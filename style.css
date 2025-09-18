@@ -1,0 +1,611 @@
+/* Anna University CGPA Calculator - Styles */
+
+:root {
+    /* Light theme colors */
+    --primary-color: #667eea;
+    --primary-dark: #5a67d8;
+    --secondary-color: #764ba2;
+    --background-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --card-background: #ffffff;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --text-light: #999999;
+    --border-color: #dddddd;
+    --border-focus: #667eea;
+    --accent-background: #f8f9ff;
+    --accent-background-hover: #f0f2ff;
+    --success-color: #4CAF50;
+    --warning-color: #FF9800;
+    --error-color: #ff4757;
+    --shadow: 0 10px 30px rgba(0,0,0,0.2);
+    --shadow-light: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+[data-theme="dark"] {
+    /* Dark theme colors */
+    --primary-color: #7c3aed;
+    --primary-dark: #6d28d9;
+    --secondary-color: #a855f7;
+    --background-gradient: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+    --card-background: #1f2937;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-light: #9ca3af;
+    --border-color: #374151;
+    --border-focus: #7c3aed;
+    --accent-background: #374151;
+    --accent-background-hover: #4b5563;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    --shadow: 0 10px 30px rgba(0,0,0,0.5);
+    --shadow-light: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--background-gradient);
+    min-height: 100vh;
+    padding: 20px 0;
+    transition: all 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.header-content {
+    text-align: center;
+    flex: 1;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.theme-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover .theme-icon {
+    transform: rotate(180deg);
+}
+
+.calculator-section {
+    background: var(--card-background);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+/* Grading System */
+.grading-system {
+    background: var(--accent-background);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+.grading-system h3 {
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.grade-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.grade-row {
+    display: contents;
+}
+
+.grade-row.header span {
+    font-weight: bold;
+    background: var(--primary-color);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.grade-row:not(.header) span {
+    padding: 8px;
+    text-align: center;
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+/* Semester Selection */
+.semester-section {
+    margin-bottom: 30px;
+}
+
+.semester-section h3 {
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.calculation-type {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.calculation-type label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+    background: var(--card-background);
+}
+
+.calculation-type label:hover {
+    border-color: var(--primary-color);
+    background: var(--accent-background);
+    transform: translateY(-2px);
+}
+
+.calculation-type input[type="radio"]:checked + span {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.calculation-type input[type="radio"]:checked {
+    accent-color: var(--primary-color);
+}
+
+/* Calculator Content */
+.calculator-content {
+    display: none;
+}
+
+.calculator-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.calculator-content h3 {
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Semester Input */
+.semester-input {
+    margin-bottom: 20px;
+}
+
+.semester-input label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.semester-input input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: var(--card-background);
+    color: var(--text-primary);
+}
+
+.semester-input input:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Subjects Container */
+.subjects-container, .semesters-container {
+    margin-bottom: 25px;
+}
+
+.subjects-header, .semesters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.subjects-header h4, .semesters-header h4 {
+    color: var(--text-primary);
+}
+
+/* Subject Row */
+.subject-row, .semester-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 15px;
+    background: var(--accent-background);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.semester-row {
+    grid-template-columns: 2fr 1fr 1fr auto;
+}
+
+.subject-row:hover, .semester-row:hover {
+    background: var(--accent-background-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-light);
+}
+
+.subject-row input, .subject-row select,
+.semester-row input, .semester-row select {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: var(--card-background);
+    color: var(--text-primary);
+}
+
+.subject-row input:focus, .subject-row select:focus,
+.semester-row input:focus, .semester-row select:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
+
+.subject-row input:disabled {
+    background: var(--accent-background);
+    opacity: 0.7;
+}
+
+.remove-subject, .remove-semester {
+    background: var(--error-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-subject:hover, .remove-semester:hover {
+    background: #ff3742;
+    transform: scale(1.1) rotate(90deg);
+}
+
+/* Buttons */
+.btn-primary, .btn-calculate {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover, .btn-calculate:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-light);
+}
+
+.calculate-section {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.btn-calculate {
+    padding: 15px 40px;
+    font-size: 16px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+}
+
+.btn-calculate:hover {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-color) 100%);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+/* Results */
+.result-section {
+    margin-top: 20px;
+    padding: 20px;
+    background: var(--background-gradient);
+    border-radius: 10px;
+    color: white;
+    display: none;
+}
+
+.result-section.show {
+    display: block;
+    animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-section h4 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+}
+
+.result-item.main {
+    background: rgba(255,255,255,0.2);
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.performance-indicator {
+    text-align: center;
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+}
+
+.performance-text {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.grade-distribution {
+    margin-top: 15px;
+}
+
+.grade-distribution h4 {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.grade-count {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Notifications */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+    transform: translateX(400px);
+    transition: all 0.3s ease;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.success {
+    background: var(--success-color);
+}
+
+.notification.error {
+    background: var(--error-color);
+}
+
+.notification.warning {
+    background: var(--warning-color);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .header-content {
+        order: 2;
+    }
+    
+    .theme-toggle {
+        order: 1;
+        margin-bottom: 10px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .calculator-section {
+        padding: 20px;
+    }
+    
+    .subject-row, .semester-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .calculation-type {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .subjects-header, .semesters-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .notification {
+        right: 10px;
+        left: 10px;
+        transform: translateY(-100px);
+    }
+
+    .notification.show {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .grade-table {
+        grid-template-columns: 1fr 1fr;
+        font-size: 0.9rem;
+    }
+    
+    .btn-calculate {
+        padding: 12px 30px;
+        font-size: 14px;
+    }
+
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .theme-icon {
+        font-size: 1.2rem;
+    }
+}
+
+/* Dark theme specific adjustments */
+[data-theme="dark"] .grade-row:not(.header) span {
+    background: var(--card-background);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .calculation-type label {
+    background: var(--card-background);
+}
+
+[data-theme="dark"] .semester-input input::placeholder,
+[data-theme="dark"] .subject-row input::placeholder,
+[data-theme="dark"] .semester-row input::placeholder {
+    color: var(--text-light);
+}
+
+/* Smooth transitions for theme switching */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

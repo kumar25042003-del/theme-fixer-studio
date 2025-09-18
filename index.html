@@ -1,26 +1,161 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anna University CGPA Calculator - Calculate Your Academic Performance</title>
-    <meta name="description" content="Free Anna University CGPA calculator for students. Calculate semester GPA and overall CGPA with official grading system. Track academic performance easily." />
-    <meta name="keywords" content="Anna University, CGPA Calculator, GPA Calculator, Academic Performance, Grading System" />
-    <meta name="author" content="Anna University CGPA Calculator" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna University CGPA Calculator</title>
+    <meta name="description" content="Calculate your GPA and CGPA based on Anna University grading system with dark/light theme support">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Anna University CGPA Calculator</h1>
+                <p>Calculate your GPA and CGPA based on Anna University grading system</p>
+            </div>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </header>
 
-    <meta property="og:title" content="Anna University CGPA Calculator - Academic Performance Tool" />
-    <meta property="og:description" content="Calculate your GPA and CGPA easily with our free Anna University calculator. Official grading system support." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+        <div class="calculator-section">
+            <!-- Grading System Reference -->
+            <div class="grading-system">
+                <h3>Grading System</h3>
+                <div class="grade-table">
+                    <div class="grade-row header">
+                        <span>Grade</span>
+                        <span>Grade Points</span>
+                    </div>
+                    <div class="grade-row">
+                        <span>O</span>
+                        <span>10</span>
+                    </div>
+                    <div class="grade-row">
+                        <span>A+</span>
+                        <span>9</span>
+                    </div>
+                    <div class="grade-row">
+                        <span>A</span>
+                        <span>8</span>
+                    </div>
+                    <div class="grade-row">
+                        <span>B+</span>
+                        <span>7</span>
+                    </div>
+                    <div class="grade-row">
+                        <span>B</span>
+                        <span>6</span>
+                    </div>
+                    <div class="grade-row">
+                        <span>C</span>
+                        <span>5</span>
+                    </div>
+                    <div class="grade-row">
+                        <span>RA/SA/W</span>
+                        <span>0</span>
+                    </div>
+                </div>
+            </div>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Anna University CGPA Calculator" />
-    <meta name="twitter:description" content="Free CGPA calculator for Anna University students" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+            <!-- Semester Selection -->
+            <div class="semester-section">
+                <h3>Select Calculation Type</h3>
+                <div class="calculation-type">
+                    <label>
+                        <input type="radio" name="calcType" value="gpa" checked>
+                        <span>Single Semester GPA</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="calcType" value="cgpa">
+                        <span>Overall CGPA</span>
+                    </label>
+                </div>
+            </div>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+            <!-- GPA Calculator -->
+            <div id="gpa-calculator" class="calculator-content active">
+                <h3>Single Semester GPA Calculator</h3>
+                <div class="semester-input">
+                    <label for="semester-name">Semester:</label>
+                    <input type="text" id="semester-name" placeholder="e.g., Semester 1">
+                </div>
+                
+                <div class="subjects-container">
+                    <div class="subjects-header">
+                        <h4>Add Courses</h4>
+                        <button type="button" id="add-subject" class="btn-primary">Add Course</button>
+                    </div>
+                    <div id="subjects-list">
+                        <div class="subject-row">
+                            <select class="course-type">
+                                <option value="theory">Theory (3 credits)</option>
+                                <option value="practical">Practical (4 credits)</option>
+                                <option value="project">Project (1 credit)</option>
+                                <option value="manual">Manual Credit Entry</option>
+                            </select>
+                            <input type="number" placeholder="Credits" class="credits" min="1" max="10" step="1" value="3">
+                            <select class="grade">
+                                <option value="">Select Grade</option>
+                                <option value="10">O (10)</option>
+                                <option value="9">A+ (9)</option>
+                                <option value="8">A (8)</option>
+                                <option value="7">B+ (7)</option>
+                                <option value="6">B (6)</option>
+                                <option value="5">C (5)</option>
+                                <option value="0">RA (0)</option>
+                                <option value="0">SA (0)</option>
+                                <option value="0">W (0)</option>
+                            </select>
+                            <button type="button" class="remove-subject">×</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calculate-section">
+                    <button type="button" id="calculate-gpa" class="btn-calculate">Calculate GPA</button>
+                </div>
+                
+                <div id="gpa-result" class="result-section">
+                    <!-- GPA results will be displayed here -->
+                </div>
+            </div>
+
+            <!-- CGPA Calculator -->
+            <div id="cgpa-calculator" class="calculator-content">
+                <h3>Overall CGPA Calculator</h3>
+                <div class="semesters-container">
+                    <div class="semesters-header">
+                        <h4>Add Semesters</h4>
+                        <button type="button" id="add-semester" class="btn-primary">Add Semester</button>
+                    </div>
+                    <div id="semesters-list">
+                        <div class="semester-row">
+                            <input type="text" placeholder="Semester Name" class="semester-name-input">
+                            <input type="number" placeholder="Total Credits" class="semester-credits" min="1" step="1">
+                            <input type="number" placeholder="GPA" class="semester-gpa" min="0" max="10" step="0.01">
+                            <button type="button" class="remove-semester">×</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calculate-section">
+                    <button type="button" id="calculate-cgpa" class="btn-calculate">Calculate CGPA</button>
+                </div>
+                
+                <div id="cgpa-result" class="result-section">
+                    <!-- CGPA results will be displayed here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 Anna University CGPA Calculator. Built for students by students.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
